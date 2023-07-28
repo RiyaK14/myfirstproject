@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo list</title>
+    <style>
+        nav{
+            margin-bottom: 30px;
+        }
+        .title{
+            font-size: 70px;
+            color: rgb(37, 199, 88);
+        }
+        li{
+            list-style: none;
+            border: 1px ridge rgb(170, 170, 170);
+            border-radius: 3em;
+            padding: 2%;
+            width: 80%;
+            margin: 2% auto;
+        }
+        input{
+            font-size: 20px;
+            width:60%;
+            margin-left: 8%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px ridge gray;
+        }
+        .contxt{
+            font-size: 20px;
+            width:60%;
+            padding: 5px;
+        }
+        .done{
+            width: 8%;
+            color: rgb(37, 199, 88);
+            position: relative;
+            float: right;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px ridge rgb(44, 231, 103);
+            border-radius: 3em;
+        }
+        .done:hover{
+            color: #fff;
+            background-color: rgb(44, 231, 103);
+        }
+        .remove{
+            width: 8%;
+            color: red;
+            position: relative;
+            float: right;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px ridge red;
+            border-radius: 3em;
+            margin-right: 20px;
+        }
+        .remove:hover{
+            color: #fff;
+            background-color: red;
+        }
+        nav{
+            width: 70%;
+            margin: 0 auto;
+        }
+        .add{
+            background-color: #fff;
+            margin: 10px;
+             background-image: url(add.png);
+             padding: 20px;
+             border-radius: 0.5em;
+             background-size: cover;
+             position: relative;
+             float: right;
+        }
+    </style>
+    </head>
+    <body>
+        <nav>
+            <span class="title">ToDo List</span>
+            <button class="add" onclick="add(this)"></button>
+        </nav>
+        <ul id="main">
+            <!--list will be formed here-->
+        </ul>
+    </body>
+    <script >
+    
+    window.change=function(item){
+    item.parentElement.style.background="linear-gradient(90deg, rgb(44, 231, 103,0.4), rgb(0, 205, 200,0.4))";
+    item.parentElement.style.textDecorationLine="line-through";
+    }  
+    
+    window.remove=function(item){
+    item.parentElement.remove();
+    }  
+    
+    window.add=function(item){
+        let list= document.createElement('li')
+        list.innerHTML=`<input type="textArea">   
+            <button class="done" onclick="adli(this)">Add</button>
+            <button class="remove" onclick="remove(this)">Cancel</button>`;
+        let main= document.getElementById("main")
+        main.appendChild(list);
+    }
+
+    window.adli=function(item){
+        let list= document.createElement('li')
+        var txt=item.parentElement.children[0].value;
+        item.parentElement.remove();
+        list.innerHTML=`<span class="contxt">${txt}</span>   
+        <button class="done" onclick="change(this)">Done</button>
+            <button class="remove" onclick="remove(this)">Remove</button>`
+        let main= document.getElementById("main")
+        main.appendChild(list);
+    }
+    </script>
+</html>
